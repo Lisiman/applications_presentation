@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		 <!-- <script type="text/javascript" src="style.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/addons/p5.sound.min.js"></script>
+		<script type="text/javascript">
+		
+			var socket = io.connect();
+			
+			socket.on('connect', function() {
+				console.log("Connected");
+			});
+
+			// Receive from any event
+			socket.on('chatmessage', function (data) {
+				var link = "http://www.indianfunpic.com/wp-content/uploads/2016/06/Funny-Kids-14.jpg";
+				var funnypic1 = "<img src=" + link + ">";
+				if(data=="hi"){
+						document.getElementById('messages').innerHTML = "" + funnypic1 + "" + document.getElementById('messages').innerHTML;
+				}
+				else{
+					//print the message with the previous ones on the <div> 
+				document.getElementById('messages').innerHTML = "" + data + "" + document.getElementById('messages').innerHTML;
+				}
+				console.log(data);
+				
+			});
+			
+			var sendmessage = function(message) {
+				console.log("chatmessage: " + message);
+				socket.emit('chatmessage', message);
+			};
+window.addEventListener('keydown',function(evt){
+if(evt.keyCode==48){
+// function setup(){
+	createCanvas(400,400);
+	background(0);
+// }
+// function draw(){
+	for(var i=0;i<wish.length;i++){
+			console.log(wish[i]);
+		//wish[i]
+	}
+// }
+
+}
+});
+	
+		</script>	
+}
+
+	</head>
+ <body>
+ <div id="messages">
+ No Messages Yet
+ </div>
+ <input type="text" id="message" name="message">
+ <input type="submit" value="submit" onclick="sendmessage(document.getElementById('message').value);">
+ </body>
+</html>

@@ -11,8 +11,8 @@ function requestHandler(req, res) {
 
 	var parsedUrl = url.parse(req.url);
 	console.log("The Request is: " + parsedUrl.pathname);
-		
-	fs.readFile(__dirname + parsedUrl.pathname, 
+
+	fs.readFile(__dirname + parsedUrl.pathname,
 		// Callback function for reading
 		function (err, data) {
 			// if there is an error
@@ -25,7 +25,7 @@ function requestHandler(req, res) {
 			res.end(data);
   		}
   	);
-  	
+
   	/*
   	res.writeHead(200);
   	res.end("Life is wonderful");
@@ -39,24 +39,24 @@ var io = require('socket.io').listen(httpServer);
 
 // Register a callback function to run when we have an individual connection
 // This is run for each individual user that connects
-io.sockets.on('connection', 
+io.sockets.on('connection',
 	// We are given a websocket object in our function
 	function (socket) {
-	
+
 		console.log("We have a new client: " + socket.id);
-		
+
 		// When this user emits, client side: socket.emit('otherevent',some data);
 		socket.on('chatmessage', function(data) {
 			// Data comes in as whatever was sent, including objects
 			console.log("Received: 'chatmessage' " + data);
 			wish.push(data);
-			
+
 			// Send it to all of the clients except of your own
 			// socket.broadcast.emit('chatmessage', data);
-			io.sockets.emit('chatmessage',data); // this one is for everyone 
+			io.sockets.emit('chatmessage',data); // this one is for everyone
 		});
-		
-		
+
+
 		socket.on('disconnect', function() {
 			console.log("Client has disconnected " + socket.id);
 		});

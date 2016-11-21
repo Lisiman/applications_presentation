@@ -1,0 +1,23 @@
+{
+  "name": "ls",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lisiman/applications_presentation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lisiman/applications_presentation/issues"
+  },
+  "homepage": "https://github.com/Lisiman/applications_presentation#readme",
+  "dependencies": {
+    "socket.io": "^1.6.0"
+  }
+}

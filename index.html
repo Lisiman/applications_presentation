@@ -6,9 +6,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/addons/p5.dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/addons/p5.sound.min.js"></script>
 		<script type="text/javascript">
-		
+
 			var socket = io.connect();
-			
+
 			socket.on('connect', function() {
 				console.log("Connected");
 			});
@@ -21,13 +21,13 @@
 						document.getElementById('messages').innerHTML = "" + funnypic1 + "" + document.getElementById('messages').innerHTML;
 				}
 				else{
-					//print the message with the previous ones on the <div> 
+					//print the message with the previous ones on the <div>
 				document.getElementById('messages').innerHTML = "" + data + "" + document.getElementById('messages').innerHTML;
 				}
 				console.log(data);
-				
+
 			});
-			
+
 			var sendmessage = function(message) {
 				console.log("chatmessage: " + message);
 				socket.emit('chatmessage', message);
@@ -47,8 +47,8 @@ if(evt.keyCode==48){
 
 }
 });
-	
-		</script>	
+
+		</script>
 }
 
 	</head>
@@ -58,5 +58,13 @@ if(evt.keyCode==48){
  </div>
  <input type="text" id="message" name="message">
  <input type="submit" value="submit" onclick="sendmessage(document.getElementById('message').value);">
+
+<div id="theCanvas"></div>
+
+<script src=./js/sketch.js>
+
+
+
+
  </body>
 </html>
